@@ -1,20 +1,55 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      colors: {
+        primary: {
+          50: "#903AFF",
+          100: "#FE34B9",
+        },
+        secondary: "#150E28",
+        tertiary: "#903AFF",
+        abstract: "#D434FE",
+      },
+      fonts: {
+        heroheader: [
+          "80px",
+          {
+            fontStyle: "normal",
+            fontWeight: "700",
+            lineHeight: "normal",
+          },
+        ],
+        navheader: [
+          "36px",
+          {
+            fontStyle: "normal",
+            fontWeight: "700",
+            lineHeight: "normal",
+          },
+        ],
+        sectionheader: [
+          "32px",
+          {
+            fontStyle: "normal",
+            fontWeight: "700",
+            lineHeight: "0%",
+          },
+        ],
       },
     },
   },
   plugins: [],
-}
-export default config
+};
+export default config;
