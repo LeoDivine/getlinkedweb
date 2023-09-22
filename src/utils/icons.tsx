@@ -59,8 +59,8 @@ export const NavOpen = (
   
   export const Twitter = (
     <svg
-      width="19"
-      height="17"
+      width="24"
+      height="24"
       viewBox="0 0 19 17"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -74,8 +74,8 @@ export const NavOpen = (
   
   export const Facebook = (
     <svg
-      width="11"
-      height="20"
+      width="24"
+      height="24"
       viewBox="0 0 11 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

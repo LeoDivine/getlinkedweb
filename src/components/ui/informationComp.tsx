@@ -49,7 +49,7 @@ export function InformationComp2({
         <div className="my-auto lg:text-left text-center">
           <h3 className={`lg:text-[32px] text-[25px] font-bold`}>
             {title} <br />
-            <span className="text-[#d434fe]">{emphasis}</span>
+            <span className="text-[#]">{emphasis}</span>
           </h3>
           <Criteria
             title="Innovation and Creativity"
