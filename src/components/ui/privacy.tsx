@@ -50,7 +50,7 @@ export default function Privacy() {
         </div>
       </div>
       <Image
-        className="my-auto"
+        className="my-auto md:hidden xl:block"
         src="/privacy.png"
         width="500"
         height="500"

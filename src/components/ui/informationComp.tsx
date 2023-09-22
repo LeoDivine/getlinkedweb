@@ -21,7 +21,7 @@ export function InformationComp({
 }: INFORMATIONCOMPI) {
   return (
     <>
-      <div className={`flex gap-2 mt-12 lg:flex-row flex-col ${className}`}>
+      <div className={`flex gap-2 mt-12 flex-col ${className}`}>
         <Image className="md:w-[40%]" width="600" height="600" src={image} alt="image" />
         <div className="my-auto lg:text-left text-center">
           <h3 className={`lg:text-[32px] text-[25px] font-bold`}>
@@ -45,7 +45,7 @@ export function InformationComp2({
   return (
     <>
       <div className={`flex gap-2 mt-12 lg:flex-row flex-col ${className}`}>
-        <Image className="md:hidden" width="600" height="600" src={image} alt="image" />
+        <Image className="xl:block md:hidden" width="600" height="600" src={image} alt="image" />
         <div className="my-auto lg:text-left text-center">
           <h3 className={`lg:text-[32px] text-[25px] font-bold`}>
             {title} <br />

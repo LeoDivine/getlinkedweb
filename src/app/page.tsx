@@ -68,11 +68,11 @@ export default function LandingPage() {
             alt="lvmfmv"
           />
           <hgroup className="relative">
-            <h3 className="lg:text-[70px] text-[40px] pt-[166px] font-bold">
+            <h3 className="xl:text-[70px] md:text-[45px] text-[40px] pt-[166px] font-bold">
               getlinked Tech Hackathon{" "}
               <span className="text-[#d434fe]">1.0</span>
             </h3>
-            <p className="text-[15px] lg:w-[60%]">
+            <p className="text-[15px] xl:w-[60%] md:w-[70%]">
               Participate in getlinked tech Hackathon 2023 stand a chance to win
               a Big prize
             </p>
@@ -117,6 +117,7 @@ export default function LandingPage() {
       <div className="lg:px-[90px] px-[20px]">
         <InformationComp
           image="/introduction.png"
+          className="lg:flex-row"
           title="Introduction to getlinked "
           emphasis="techHackathon 1.0"
           description="Our tech hackathon is a melting pot of visionaries, and its purpose is as
@@ -130,7 +131,7 @@ that's what we're all about!"
           <Image src="/purpleflare2.png" width="800" height="800" alt="iduf" />
         </div>
         <InformationComp
-          className="flex-row-reverse relative"
+          className="lg:flex-row-reverse relative"
           image="/rules.png"
           title="Rules and "
           emphasis="guidelines"
@@ -185,7 +186,7 @@ to the general public and teams begin to get ready to register"
 getlinked tech hackathon 1.0 2023 by proceeding to register"
             date="November 18, 2023"
             item="2"
-            className="flex-row-reverse"
+            className="xl:flex-row-reverse md:flex-row-reverse"
           />
           <Timeline2
             title="Teams Registration ends"
@@ -201,7 +202,7 @@ and ideas"
 hackathon 1.0 2023 are formally announced"
             date="November 18, 2023"
             item="4"
-            className="flex-row-reverse mt-[70px]"
+            className="xl:flex-row-reverse md:flex-row-reverse mt-[70px]"
           />
           <Timeline2
             title="Getlinked Hackathon 1.0 Offically Begins"
@@ -218,7 +219,7 @@ The winner of the hackathon will also be announced on
 this day"
             date="November 18, 2023"
             item="6"
-            className="flex-row-reverse"
+            className="xl:flex-row-reverse md:flex-row-reverse"
           />
         </div>
       </div>
