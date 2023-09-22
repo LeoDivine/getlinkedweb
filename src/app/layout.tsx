@@ -1,22 +1,32 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Montserrat } from "next/font/google";
+import { Montserrat, Unica_One } from "next/font/google";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
+const unica = Unica_One({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-unica",
+});
 
 export const metadata: Metadata = {
-  title: 'GetLinked AI',
-  description: 'Project Challenge',
-}
+  title: "GetLinked AI",
+  description: "Project Challenge",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>{children}</body>
+      <body className={`${montserrat.className} ${unica.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
