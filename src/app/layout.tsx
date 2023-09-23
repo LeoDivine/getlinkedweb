@@ -1,3 +1,4 @@
+import Footer from '@/components/layouts/footer';
 import './globals.css'
 import type { Metadata } from 'next'
 import { Montserrat, Unica_One } from "next/font/google";
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${montserrat.className} ${unica.variable}`}>
         {children}
+        <Footer/>
       </body>
     </html>
   );

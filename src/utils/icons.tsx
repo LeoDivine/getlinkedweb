@@ -42,7 +42,7 @@ export const NavOpen = (
     </svg>
   );
   
-  export const Instagram = (
+  export const instagramIcon = (
     <svg
       width="24"
       height="24"
@@ -57,7 +57,7 @@ export const NavOpen = (
     </svg>
   );
   
-  export const Twitter = (
+  export const twitterIcon = (
     <svg
       width="24"
       height="24"
@@ -72,7 +72,7 @@ export const NavOpen = (
     </svg>
   );
   
-  export const Facebook = (
+  export const facebookIcon = (
     <svg
       width="24"
       height="24"
@@ -87,7 +87,7 @@ export const NavOpen = (
     </svg>
   );
   
-  export const LinkedIn = (
+  export const linkedInIcon = (
     <svg
       width="24"
       height="24"
