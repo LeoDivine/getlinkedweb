@@ -1,3 +1,4 @@
+"use client";
 import { FormInput, FormTextField } from "@/components/ui/formInput";
 import {
   facebookIcon,
@@ -6,10 +7,77 @@ import {
   twitterIcon,
 } from "@/utils/icons";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 export default function Register() {
+  const [formData, setFormData] = React.useState({
+    fullName: "",
+    email: "",
+    message: "",
+  });
+  const [submitting, setSubmitting] = React.useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmission = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (
+      formData.fullName === "" ||
+      formData.email === "" ||
+      formData.message === ""
+    ) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      email: formData.email,
+      first_name: formData.fullName,
+      message: formData.message,
+    });
+
+    const requestOptions: RequestInit = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    setSubmitting(true);
+    try {
+      const response = await fetch(
+        "https://backend.getlinked.ai/hackathon/contact-form",
+        requestOptions
+      );
+
+      if (!response.ok) {
+        throw new Error("Contact Submission Error");
+      }
+
+      const result = await response.json();
+      console.log("Form submitted successfully.", result);
+
+      setFormData({
+        fullName: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("An error occurred: ");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <div className="bg-[#140D27] w-full flex h-screen text-white">
       <Image
@@ -41,32 +109,40 @@ export default function Register() {
             Questions or need assistance?
           </h3>
           <h3 className="text-[#d434fe] font-bold">Let us know about it!</h3>
-          <form action="">
+          <form onSubmit={handleFormSubmission}>
             <FormInput
               type="text"
               placeholder="Enter name"
               formTitle="Name"
               className="w-full md:w-full xl:w-[440px]"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleInputChange}
             />
             <FormInput
               type="email"
               placeholder="Enter email"
               formTitle="Email"
               className="w-full md:w-full xl:w-[440px]"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
             />
             <FormTextField
               type="text"
               placeholder="Message"
               formTitle="Message"
               className="p-3 h-[200px] w-full md:w-full xl:w-[440px]"
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
             />
-            <Link href="">
-              <input
-                className="xl:mx-[150px] w-full xl:w-[30%] mt-[10px] bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
-                type="submit"
-                value="Submit"
-              />
-            </Link>
+            <button
+              type="submit"
+              className="xl:mx-[150px] w-full xl:w-[30%] mt-[10px] bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
+            >
+              {submitting ? "Submitting..." : "Submit"}
+            </button>
           </form>
         </div>
       </div>
