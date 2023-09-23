@@ -78,7 +78,7 @@ export default function LandingPage() {
             </p>
             <Link
               className="bg-gradient-to-r from-[#903AFF] to-[#FE34B9] px-[30px] z-10 py-2 rounded-sm"
-              href=""
+              href="/register"
             >
               <button className="mt-[30px]">Register</button>
             </Link>

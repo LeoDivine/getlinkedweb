@@ -1,12 +1,20 @@
 import { FormInput, FormTextField } from "@/components/ui/formInput";
 import { Facebook, Instagram, LinkedIn, Twitter } from "@/utils/icons";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 export default function Register() {
   return (
     <div className="bg-[#140D27] w-full flex h-screen text-white">
-      <div className="flex flex-col gap-4 w-[50%] pl-[200px] mt-[140px]">
+      <Image
+        className="absolute left-0 top-0"
+        src="/purpleflare8.png"
+        width="500"
+        height="500"
+        alt="lgifm"
+      />
+      <div className="flex flex-col gap-4 w-[50%] pl-[200px] mt-[140px] relative">
         <h3 className="text-[32px] font-bold text-[#d434fe]">Get in touch</h3>
         <p className="w-[20%]">Contact Information</p>
         <p className="w-[40%]">27,Alara Street Yaba 100012 Lagos State</p>
@@ -22,7 +30,7 @@ export default function Register() {
           {LinkedIn}
         </div>
       </div>
-      <div className="my-auto">
+      <div className="my-auto relative z-20">
         <div className="bg-[#53535316] px-[100px] py-[50px]">
           <h3 className="text-[#d434fe] font-bold">
             Questions or need assistance?
@@ -39,7 +47,7 @@ export default function Register() {
               type="text"
               placeholder="Message"
               formTitle="Message"
-              className="p-3 h-[210px]"
+              className="p-3 h-[200px]"
             />
             <Link href="">
               <input
@@ -51,6 +59,13 @@ export default function Register() {
           </form>
         </div>
       </div>
+      <Image
+        className="absolute right-0 bottom-0"
+        src="/purpleflare9.png"
+        width="500"
+        height="500"
+        alt="lgifm"
+      />
     </div>
   );
 }
