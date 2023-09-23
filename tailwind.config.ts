@@ -23,8 +23,9 @@ const config: Config = {
           100: "#FE34B9",
         },
         secondary: "#150E28",
-        tertiary: "#903AFF",
+        tertiary: "#903AFF", 
         abstract: "#D434FE",
+        bottom: "#100B20",
       },
       fonts: {
         heroheader: [
@@ -51,6 +52,7 @@ const config: Config = {
             lineHeight: "0%",
           },
         ],
+        
       },
     },
   },

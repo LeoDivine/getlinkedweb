@@ -119,12 +119,12 @@ export default function LandingPage() {
           image="/introduction.png"
           title="Introduction to getlinked "
           emphasis="techHackathon 1.0"
-          description="Our tech hackathon is a melting pot of visionaries, and its purpose is as
-clear as day: to shape the future. Whether you're a coding genius, a 
-design maverick, or a concept wizard, you'll have the chance to transform 
-your ideas into reality. Solving real-world problems, pushing the boundaries
-of technology, and creating solutions that can change the world,
-that's what we're all about!"
+          description={`Our tech hackathon is a melting pot of visionaries, and its purpose is as
+                        clear as day: to shape the future. Whether you're a coding genius, a 
+                        design maverick, or a concept wizard, you'll have the chance to transform 
+                        your ideas into reality. Solving real-world problems, pushing the boundaries
+                        of technology, and creating solutions that can change the world,
+                        that's what we're all about!`}
         />
         <div className="absolute">
           <Image src="/purpleflare2.png" width="800" height="800" alt="iduf" />
@@ -134,12 +134,12 @@ that's what we're all about!"
           image="/rules.png"
           title="Rules and "
           emphasis="guidelines"
-          description="Our tech hackathon is a melting pot of visionaries, and its purpose is as
-clear as day: to shape the future. Whether you're a coding genius, a 
-design maverick, or a concept wizard, you'll have the chance to transform 
-your ideas into reality. Solving real-world problems, pushing the boundaries
-of technology, and creating solutions that can change the world,
-that's what we're all about!"
+          description={`Our tech hackathon is a melting pot of visionaries, and its purpose is as
+                      clear as day: to shape the future. Whether you're a coding genius, a 
+                      design maverick, or a concept wizard, you'll have the chance to transform 
+                      your ideas into reality. Solving real-world problems, pushing the boundaries
+                      of technology, and creating solutions that can change the world,
+                      that's what we're all about!`}
         />
         <div className="absolute right-0">
           <Image src="/purpleflare3.png" width="800" height="800" alt="iduf" />
@@ -165,8 +165,8 @@ want to ask about getlinked Hackathon 1.0"
           Timeline
         </h3>
         <p className="text-center lg:w-[30%] w-full mx-auto">
-          Here is the breakdown of the time we anticipate using for the upcoming
-          event.
+          {`Here is the breakdown of the time we anticipate using for the upcoming
+          event.`}
         </p>
         <div className="absolute left-0">
           <Image src="/purpleflare4.png" width="800" height="800" alt="iduf" />
@@ -174,15 +174,15 @@ want to ask about getlinked Hackathon 1.0"
         <div className="w-full">
           <Timeline2
             title="Hackathon Announcement"
-            description="The getlinked tech hackathon 1.0 is formally announced
-to the general public and teams begin to get ready to register"
+              description={`The getlinked tech hackathon 1.0 is formally announced
+  to the general public and teams begin to get ready to register`}
             date="November 18, 2023"
             item="1"
           />
           <Timeline
             title="Teams Registration begins"
-            description="Interested teams can now show their interest in the
-getlinked tech hackathon 1.0 2023 by proceeding to register"
+            description={`Interested teams can now show their interest in the
+getlinked tech hackathon 1.0 2023 by proceeding to register`}
             date="November 18, 2023"
             item="2"
             className="flex-row-reverse"
@@ -205,17 +205,17 @@ hackathon 1.0 2023 are formally announced"
           />
           <Timeline2
             title="Getlinked Hackathon 1.0 Offically Begins"
-            description="Accepted teams can now proceed to build their
-ground breaking skill driven solutions"
+            description={`Accepted teams can now proceed to build their
+ground breaking skill driven solutions`}
             date="November 18, 2023"
             className="mt-[70px]"
             item="5"
           />
           <Timeline
             title="Demo Day"
-            description="Teams get the opportunity to pitch their projects to judges.
+            description={`Teams get the opportunity to pitch their projects to judges.
 The winner of the hackathon will also be announced on
-this day"
+this day`}
             date="November 18, 2023"
             item="6"
             className="flex-row-reverse"
