@@ -94,8 +94,17 @@ export default function Register() {
                 className=" md:w-[160px] xl:w-[270px]"
               />
               
-              <FormSelect className="md:w-[160px]  xl:w-[270px] " options={categoryOptions} />
-              <FormSelect className="md:w-[160px] xl:w-[270px]" options={groupSizeOptions} />
+              <FormSelect
+  className="md:w-[160px] xl:w-[270px]"
+  options={categoryOptions}
+  label="Category"
+/>
+<FormSelect
+  className="md:w-[160px] xl:w-[270px]"
+  options={groupSizeOptions}
+  label="Select Group Size"
+/>
+
 
             </div>
             <Link href="">

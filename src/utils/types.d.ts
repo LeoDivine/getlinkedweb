@@ -29,5 +29,6 @@ interface IFooterLinksProps {
   interface FormSelectProps {
     className: string;
     options: string[];
+    label: string;
   }
   

@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import Button from '../ui/button';
 import Link from 'next/link';
+import {  animateScroll as scroll } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
+
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,7 +12,14 @@ export default function Navbar() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+  const scrollToSection = (sectionId: string) => {
+    const offset = parseInt(sectionId, 10); // Convert string to a base-10 integer
+    scroll.scrollTo(offset, {
+      duration: 800,
+      smooth: 'easeInOutQuart',
+    });
+  };
+  
   return (
     <>
       <div className="w-full relative z-20 flex flex-row items-center p-5 sm:flex-row justify-between text-white bg-[#140D27]">
@@ -19,13 +29,37 @@ export default function Navbar() {
         <div className="hidden md:flex">
           <ul className="flex flex-col md:flex-row my-auto gap-5">
             <li>
-              <Link href="/timeline">Timeline</Link>
+            <ScrollLink
+              to="timeline-section"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={800}
+            >
+              Timeline
+            </ScrollLink>
             </li>
             <li>
-              <Link href="/overview">Overview</Link>
+            <ScrollLink
+              to="overview-section"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={800}
+            >
+              Overview
+            </ScrollLink>
             </li>
             <li>
-              <Link href="/faqs">FAQs</Link>
+            <ScrollLink
+              to="faqs-section"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={800}
+            >
+              FAQs
+            </ScrollLink>
             </li>
             <li>
               <Link href="/contact">Contact</Link>

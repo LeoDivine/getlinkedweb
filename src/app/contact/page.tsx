@@ -9,7 +9,7 @@ import {
 import Image from "next/image";
 import React from "react";
 
-export default function Register() {
+export default function ContactPage() {
   const [formData, setFormData] = React.useState({
     fullName: "",
     email: "",
