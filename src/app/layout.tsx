@@ -1,8 +1,8 @@
-import Navbar from '@/components/layouts/navbar';
-import './globals.css'
-import type { Metadata } from 'next'
+import Navbar from "@/components/layouts/navbar";
+import "./globals.css";
+import type { Metadata } from "next";
 import { Montserrat, Unica_One } from "next/font/google";
-import Footer from '@/components/layouts/footer';
+import Footer from "@/components/layouts/footer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className={`${montserrat.className} ${unica.variable}`}>
         <Navbar />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

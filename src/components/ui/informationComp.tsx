@@ -3,6 +3,7 @@ import React from "react";
 import Criteria from "./criteria";
 import Faq from "./faq";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface INFORMATIONCOMPI {
   image: string;
@@ -22,14 +23,32 @@ export function InformationComp({
   return (
     <>
       <div className={`flex gap-2 mt-12 flex-col ${className}`}>
-        <Image className="md:w-[40%]" width="600" height="600" src={image} alt="image" />
-        <div className="my-auto lg:text-left text-center">
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="lg:w-[2000px]"
+        >
+          <Image
+            className="md:w-[40%] lg:w-full"
+            width="600"
+            height="600"
+            src={image}
+            alt="image"
+          />{" "}
+        </motion.div>
+        <motion.div
+          initial={{ x: 20, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="my-auto lg:text-left text-center"
+        >
           <h3 className={`lg:text-[32px] text-[25px] font-bold`}>
             {title} <br />
             <span className="text-[#d434fe]">{emphasis}</span>
           </h3>
           <p className="lg:mt-[20px] mt-[10px] leading-[25px]">{description}</p>
-        </div>
+        </motion.div>
       </div>
     </>
   );
@@ -45,49 +64,103 @@ export function InformationComp2({
   return (
     <>
       <div className={`flex gap-2 mt-12 lg:flex-row flex-col ${className}`}>
-        <Image className="xl:block md:hidden" width="600" height="600" src={image} alt="image" />
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="lg:w-full"
+        >
+          <Image
+            className="xl:block md:hidden"
+            width="600"
+            height="600"
+            src={image}
+            alt="image"
+          />
+        </motion.div>
         <div className="my-auto lg:text-left text-center">
-          <h3 className={`lg:text-[32px] text-[25px] font-bold`}>
+          <motion.h3
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className={`lg:text-[32px] text-[25px] font-bold`}
+          >
             {title} <br />
-            <span className="text-[#]">{emphasis}</span>
-          </h3>
-          <Criteria
-            title="Innovation and Creativity"
-            description="Evaluate the uniqueness and creativity of the
+            <span className="text-[#d434fe]">{emphasis}</span>
+          </motion.h3>
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <Criteria
+              title="Innovation and Creativity"
+              description="Evaluate the uniqueness and creativity of the
 solution. Consider whether it addresses a real-world problem in a novel 
 way or introduces innovative features."
-          />
-          <Criteria
-            title="Functionality"
-            description="Assess how well the solution works. Does it perform its 
+            />
+          </motion.div>
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <Criteria
+              title="Functionality"
+              description="Assess how well the solution works. Does it perform its 
 intended functions effectively and without major issues? Judges would
 consider the completeness and robustness of the solution."
-          />
-          <Criteria
-            title="Impact and Relevance"
-            description="Determine the potential impact of the solution 
+            />
+          </motion.div>
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.1 }}
+          >
+            <Criteria
+              title="Impact and Relevance"
+              description="Determine the potential impact of the solution 
 in the real world. Does it address a significant problem, and is it relevant 
 to the target audience? Judges would assess the potential social, 
 economic, or environmental benefits."
-          />
-          <Criteria
-            title="Technical Complexity"
-            description="Evaluate the technical sophistication of the solution. 
+            />
+          </motion.div>
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0 }}
+          >
+            <Criteria
+              title="Technical Complexity"
+              description="Evaluate the technical sophistication of the solution. 
 Judges would consider the complexity of the code, the use of advanced 
 technologies or algorithms, and the scalability of the solution."
-          />
-          <Criteria
-            title="Adherence to Hackathon Rules"
-            description="Judges will Ensure that the team adhered 
+            />
+          </motion.div>
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <Criteria
+              title="Adherence to Hackathon Rules"
+              description="Judges will Ensure that the team adhered 
 to the rules and guidelines of the hackathon, including deadlines, use of 
 specific technologies or APIs, and any other competition-specific requirements."
-          />
-          <Link
-            className="bg-gradient-to-r from-[#903AFF] to-[#FE34B9] px-[30px] z-10 py-3 rounded-sm"
-            href=""
+            />
+          </motion.div>
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
           >
-            <button className="mt-[30px]">Read More</button>
-          </Link>
+            <Link
+              className="bg-gradient-to-r from-[#903AFF] to-[#FE34B9] px-[30px] z-10 py-3 rounded-sm"
+              href=""
+            >
+              <button className="mt-[30px]">Read More</button>
+            </Link>
+          </motion.div>
         </div>
       </div>
     </>
@@ -106,15 +179,38 @@ export function InformationComp3({
       <div
         className={`flex gap-2 mt-12 lg:flex-row-reverse flex-col-reverse ${className}`}
       >
-        <Image className="md:w-[40%]" width="600" height="600" src={image} alt="image" />
+        <motion.div
+          initial={{ y: -100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          <Image
+            className="md:w-[40%] lg:w-full"
+            width="600"
+            height="600"
+            src={image}
+            alt="image"
+          />
+        </motion.div>
+
         <div className="my-auto">
-          <h3
+          <motion.h3
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
             className={`lg:text-[32px] text-[25px] lg:text-left text-center font-bold`}
           >
             {title} <br />
             <span className="text-[#d434fe]">{emphasis}</span>
-          </h3>
-          <p className="mt-[20px] lg:text-left text-center">{description}</p>
+          </motion.h3>
+          <motion.p
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="mt-[20px] lg:text-left text-center"
+          >
+            {description}
+          </motion.p>
           <div className="mt-[40px]">
             <Faq
               headline="Can I work on a project I started before the hackathon?"

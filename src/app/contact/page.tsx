@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import { FormInput, FormTextField } from "@/components/ui/formInput";
 import {
   facebookIcon,
@@ -6,6 +6,7 @@ import {
   linkedInIcon,
   twitterIcon,
 } from "@/utils/icons";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 
@@ -87,7 +88,12 @@ export default function ContactPage() {
         height="500"
         alt="lgifm"
       />
-      <div className="hidden lg:flex flex-col gap-4 w-[50%] md:pl-[100px] pl-[200px] mt-[140px] relative">
+      <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1, delay: 0.3 }}
+        className="hidden lg:flex flex-col gap-4 w-[50%] md:pl-[100px] pl-[200px] mt-[140px] relative"
+      >
         <h3 className="text-[32px] font-bold text-[#d434fe]">Get in touch</h3>
         <p className="w-[20%]">Contact Information</p>
         <p className="w-[40%]">27,Alara Street Yaba 100012 Lagos State</p>
@@ -102,7 +108,7 @@ export default function ContactPage() {
           {facebookIcon}
           {linkedInIcon}
         </div>
-      </div>
+      </motion.div>
       <div className="my-auto lg:w-[47%] w-full relative z-20">
         <div className="bg-[#53535316] px-[10px] py-[20px] lg:px-[100px] xl:py-[50px]">
           <h3 className="text-[#d434fe] font-bold">

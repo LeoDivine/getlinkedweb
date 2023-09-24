@@ -71,7 +71,7 @@ export default function Navbar() {
           <Button
             text="Register"
             variant="primary"
-            href=""
+            href="/register"
             className="rounded-lg bg-gradient-to-r from-[#903AFF] ml-3 to-[#FE34B9] px-[20px] py-[10px]"
           />
         </div>
@@ -146,7 +146,7 @@ export default function Navbar() {
         <Button
           text="Register"
           variant="primary"
-          href=""
+          href="/register"
           className="rounded-lg bg-gradient-to-r from-[#903AFF] to-[#FE34B9] px-[20px] py-[10px]"
         />
       </div>

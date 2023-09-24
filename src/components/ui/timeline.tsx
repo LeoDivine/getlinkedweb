@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React from "react";
 
 interface TIMELINEI {
@@ -16,11 +17,18 @@ export function Timeline({
   className,
 }: TIMELINEI) {
   return (
-    <div className="odd:text-right even:text-left relative">
+    <motion.div
+      initial={{ y: -100, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.3 }}
+      className="odd:text-right even:text-left relative"
+    >
       <div
         className={`md:flex-row lg:ml-0 ml-[70px] lg:pr-0 pr-[30px] justify-center mt-[100px] md:mt-[90px] flex xl:flex-row flex-col lg:gap-[120px] relative ${className}`}
       >
-        <div className={`md:flex-col flex-col lg:w-[30%] w-full flex text-right`}>
+        <div
+          className={`md:flex-col flex-col lg:w-[30%] w-full flex text-right`}
+        >
           <h3 className="text-[18px] lg:text-[24px] md:text-left xl:text-left text-left font-bold text-[#d434fe]">
             {title}
           </h3>
@@ -36,9 +44,9 @@ export function Timeline({
           {item}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
-} 
+}
 export function Timeline2({
   title,
   description,
@@ -47,7 +55,12 @@ export function Timeline2({
   className,
 }: TIMELINEI) {
   return (
-    <div className="w-full odd:text-right even:text-left relative">
+    <motion.div
+      initial={{ y: -100, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.3 }}
+      className="w-full odd:text-right even:text-left relative"
+    >
       <div
         className={`md:flex-row lg:ml-0 ml-[70px] lg:pr-0 pr-[30px] justify-center mt-[50px] lg:mt-[100px] flex flex-col lg:gap-[120px] relative ${className}`}
       >
@@ -55,7 +68,9 @@ export function Timeline2({
           <h3 className="text-[18px] lg:text-[24px] md:text-right xl:text-right text-left font-bold text-[#d434fe]">
             {title}
           </h3>
-          <p className="text-[12px] md:text-right text-left xl:text-right">{description}</p>
+          <p className="text-[12px] md:text-right text-left xl:text-right">
+            {description}
+          </p>
         </div>
         <h3 className="xl:text-left md:text-left text-[18px] lg:text-[24px] w-full lg:w-[30%] my-auto font-bold mt-9 text-[#d434fe] text-left">
           {date}
@@ -67,6 +82,6 @@ export function Timeline2({
           {item}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

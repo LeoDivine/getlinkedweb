@@ -1,4 +1,5 @@
 import { ListIcon } from "@/utils/icons";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -7,16 +8,38 @@ export default function Privacy() {
   return (
     <div className="flex flex-col lg:flex-row px-[20px] lg:px-[100px] pb-[30px] mt-[70px]">
       <div className="mt-[40px] flex flex-col">
-        <h3 className="text-[32px] font-bold">
+        <motion.h3
+          initial={{ x: 100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="text-[32px] font-bold"
+        >
           Privacy Policy and <br />
           <span className="text-[#D434FE]">Terms</span>
-        </h3>
-        <p className="mt-[10px]">Last updated on September 12, 2023</p>
-        <p className="mt-[20px] w-[80%]">
+        </motion.h3>
+        <motion.p
+          initial={{ x: 100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="mt-[10px]"
+        >
+          Last updated on September 12, 2023
+        </motion.p>
+        <motion.p
+          initial={{ x: 100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="mt-[20px] w-[80%]"
+        >
           Below are our privacy & policy, which outline a lot of goodies. it’s
           our aim to always take of our participant
-        </p>
-        <div className="mt-[30px] mb-[20px] text-center lg:text-left w-full lg:w-[80%] border-[1px] p-[20px] lg:p-[60px] bg-[#53535316] rounded-[7px] border-[#d434fe]">
+        </motion.p>
+        <motion.div
+          initial={{ y: -100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="mt-[30px] mb-[20px] text-center lg:text-left w-full lg:w-[80%] border-[1px] p-[20px] lg:p-[60px] bg-[#53535316] rounded-[7px] border-[#d434fe]"
+        >
           <p>
             At getlinked tech Hackathon 1.0, we value your privacy and are
             committed to protecting your personal information. This Privacy
@@ -47,15 +70,22 @@ export default function Privacy() {
           >
             <button className="mt-[30px]">Read More</button>
           </Link>
-        </div>
+        </motion.div>
       </div>
-      <Image
-        className="my-auto md:hidden xl:block"
-        src="/privacy.png"
-        width="500"
-        height="500"
-        alt="mdmdisd"
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.3 }}
+        className=" my-auto w-[2400px]"
+      >
+        <Image
+          className="my-auto md:hidden xl:block"
+          src="/privacy.png"
+          width="500"
+          height="500"
+          alt="mdmdisd"
+        />
+      </motion.div>
     </div>
   );
 }

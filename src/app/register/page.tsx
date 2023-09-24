@@ -4,6 +4,8 @@ import { FormInput } from "@/components/ui/formInput";
 import FormSelect from "@/components/ui/formselect";
 import { CATEGORIES, GROUPSIZE } from "@/utils/const";
 import Image from "next/image";
+import { motion } from "framer-motion";
+
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -60,7 +62,12 @@ export default function Register() {
         height="500"
         alt="lgifm"
       />
-      <div className="hidden lg:flex flex-col gap-4 w-full mt-[40px] relative">
+      <motion.div
+        initial={{opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.3 }}
+        className="hidden lg:flex flex-col gap-4 w-full mt-[40px] relative"
+      >
         <Image
           className=""
           src="/register.png"
@@ -68,7 +75,7 @@ export default function Register() {
           height="600"
           alt="kgrgri"
         />
-      </div>
+      </motion.div>
       <div className="relative z-20">
         <div className="bg-[#53535316] lg:px-[90px] p-[50px] lg:py-[50px] lg:mr-[50px]">
           <h3 className="text-[32px] text-[#d434fe] font-bold">Register</h3>
