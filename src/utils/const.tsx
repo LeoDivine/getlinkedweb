@@ -40,3 +40,29 @@ export const FOOTERLINKS: {
 		],
 	  },
   ]
+export const CATEGORIES =[
+	{
+		formTitle: "Category",
+		name:
+		[
+		{option1: "First Category"},
+		{option2: "Second Category"},
+		{option3: "Third Category"},
+		{option4: "Fourth Category"},
+		]
+		
+	}
+]
+export const GROUPSIZE = [
+	{
+		formTitle: "Group Size",
+		name:
+		[
+		{option1: "2"},
+		{option2: "3"},
+		{option3: "4"},
+		{option4: "5"},
+		]
+		
+	}
+]

@@ -13,3 +13,22 @@ interface IFooterLinksProps {
     icon1?: JSX.Element;
    
   }
+  interface FORMINUTI {
+    formTitle?: string;
+    placeholder?: string;
+    type?: string;
+    name?: string;
+    value?: string;
+    className?: string;
+    option1?: string;
+    option2?: string;
+    option3?: string;
+    option4?: string;
+    onChange?:(e)=>void;
+  }
+  interface FormSelectProps {
+    className: string;
+    options: string[];
+    label: string;
+  }
+  

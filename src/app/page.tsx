@@ -137,6 +137,7 @@ export default function LandingPage() {
         </div>
       </div>
       <div className="lg:px-[90px] px-[20px]">
+        <div id="overview-section">
         <InformationComp
           image="/introduction.png"
           className="lg:flex-row"
@@ -149,6 +150,8 @@ export default function LandingPage() {
                         of technology, and creating solutions that can change the world,
                         that's what we're all about!`}
         />
+        </div>
+        
         <div className="absolute">
           <Image src="/purpleflare2.png" width="800" height="800" alt="iduf" />
         </div>
@@ -174,6 +177,7 @@ export default function LandingPage() {
           emphasis="Key attributes"
           image="/criteria.png"
         />
+        <div id="faqs-section">
         <InformationComp3
           className="flex-row-reverse"
           title="Frequently Asked"
@@ -182,14 +186,11 @@ export default function LandingPage() {
           description="We got answers to the questions that you might
 want to ask about getlinked Hackathon 1.0"
         />
+        </div>
+        
       </div>
-      <div className="pb-[20px]">
-        <motion.h3
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="md:mt-[50px] text-center lg:text-[32px] text-[25px] mb-[20px] font-bold"
-        >
+      <div className="pb-[20px]" id="timeline-section">
+        <motion.h3 className="md:mt-[50px] text-center lg:text-[32px] text-[25px] mb-[20px] font-bold">
           Timeline
         </motion.h3>
         <motion.p

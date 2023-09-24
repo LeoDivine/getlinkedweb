@@ -1,15 +1,51 @@
 "use client";
-import {
-  FormInput,
-  FormSelect,
-  FormTextField,
-} from "@/components/ui/formInput";
-import { motion } from "framer-motion";
+import { FormInput } from "@/components/ui/formInput";
+import FormSelect from "@/components/ui/formselect";
+import { CATEGORIES, GROUPSIZE } from "@/utils/const";
 import Image from "next/image";
+import { motion } from "framer-motion";
+
 import Link from "next/link";
 import React from "react";
 
 export default function Register() {
+  const categoryOptions = CATEGORIES[0].name.map(category => {
+    return Object.values(category)[0];
+  });
+ 
+
+  const groupSizeOptions = GROUPSIZE[0].name.map(group => {
+    return Object.values(group)[0];
+  });
+  
+
+  const [categories, setCategories] = React.useState([]);
+
+  const fetchCategoryList = async () => {
+    try {
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var requestOptions: any = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      const response = await fetch(
+        "https://backend.getlinked.ai/hackathon/categories-list",
+        requestOptions
+      );
+      const result = await response.json();
+      setCategories(result);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  React.useEffect(() => {
+    fetchCategoryList();
+  }, []);
   return (
     <div className="bg-[#140D27] lg:flex lg:h-screen text-white">
       <Image
@@ -64,26 +100,23 @@ export default function Register() {
                 formTitle="Project Topic"
                 className=" md:w-[160px] xl:w-[270px]"
               />
+              
               <FormSelect
-                formTitle="Category"
-                option1="First Category"
-                option2="Second Category"
-                option3="Third Category"
-                option4="Fourth Category"
-                className="md:w-[160px] xl:w-[270px]"
-              />
-              <FormSelect
-                formTitle="Group Size"
-                option1="2"
-                option2="3"
-                option3="4"
-                option4="5"
-                className=" md:w-[160px] xl:w-[270px]"
-              />
+  className="md:w-[160px] xl:w-[270px]"
+  options={categoryOptions}
+  label="Category"
+/>
+<FormSelect
+  className="md:w-[160px] xl:w-[270px]"
+  options={groupSizeOptions}
+  label="Select Group Size"
+/>
+
+
             </div>
             <Link href="">
               <input
-                className="lg:mx-[40px] w-[74%] mt-[15px] bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
+                className="lg:mx-[40px] w-[74%] mt-[15px] cursor-pointer bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
                 type="submit"
                 value="Submit"
               />
