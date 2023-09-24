@@ -28,7 +28,12 @@ interface IFooterLinksProps {
   }
   interface FormSelectProps {
     className: string;
-    options: string[];
+    options: ICategories[];
     label: string;
+    
+  }
+  interface ICategories {
+    id: string;
+    name: string;
   }
   
