@@ -5,40 +5,51 @@ import FormSelect from "@/components/ui/formselect";
 import { CATEGORIES, GROUPSIZE } from "@/utils/const";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Register() {
-  const [categoryOptions, setCategoryOptions] = React.useState<ICategories[] >([]);
-  useEffect(() => { 
+  const [categoryOptions, setCategoryOptions] = React.useState<ICategories[]>(
+    []
+  );
+  useEffect(() => {
     const fetchCategoryList = async () => {
-
       try {
         const response = await fetch(
-          "https://backend.getlinked.ai/hackathon/categories-list", {
-            headers: {'Content-type' : 'application/json'},
+          "https://backend.getlinked.ai/hackathon/categories-list",
+          {
+            headers: { "Content-type": "application/json" },
           }
-        ); 
+        );
         const result = await response.json();
         setCategoryOptions(result); // Assuming the categories are in the 'categories' field of the API response
         return result;
-        
       } catch (error) {
         console.log(error);
       }
-  
-    };  
-    fetchCategoryList()
-  },[])
+    };
+    fetchCategoryList();
+  }, []);
 
   const groupSizeOptions = GROUPSIZE[0].name.map((group) => {
     return Object.values(group)[0];
   });
+  
+  const [formData, setFormData] = useState({
+    email: "",
+    phone_number: "",
+    team_name: "",
+    group_size: 10,
+    project_topic: "",
+    category: 1,
+  });
 
- const handleSubmit = () => {
-  console.log("submitted successfully...")
- }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
- 
+     
+    console.log("submitted successfully...");
+  };
+
   console.log(categoryOptions);
   return (
     <div className="bg-[#140D27] lg:flex lg:h-screen text-white">
@@ -101,13 +112,13 @@ export default function Register() {
                 label="Select Group Size"
               />
             </div>
-            
-              <Button
-                className="lg:mx-[40px] w-[74%] mt-[15px] cursor-pointer bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
-                variant="primary"
-                text="Submit"
-              />
-           
+
+            <button
+              className="lg:mx-[40px] w-[74%] mt-[15px] cursor-pointer bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
+              type="submit"
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>
