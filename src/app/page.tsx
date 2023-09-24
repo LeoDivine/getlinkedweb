@@ -9,6 +9,7 @@ import Privacy from "@/components/ui/privacy";
 import Prizes from "@/components/ui/prizes";
 import { Timeline, Timeline2 } from "@/components/ui/timeline";
 import Timer from "@/components/ui/timer";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -51,13 +52,20 @@ export default function LandingPage() {
 
   return (
     <div className="bg-[#140D27] text-white">
-      <Image
-        className=" absolute right-0 lg:mr-[40px] pt-10"
-        src="/heroline.png"
-        width="400"
-        height="400"
-        alt="hero"
-      />
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: "1", delay: 0.3 }}
+      >
+        <Image
+          className=" absolute right-0 lg:mr-[40px] pt-10"
+          src="/heroline.png"
+          width="400"
+          height="400"
+          alt="hero"
+        />
+      </motion.div>
+
       <div className="flex flex-col lg:flex-row z-10 relative gap-[10px]">
         <div className="px-[20px] lg:text-left text-center lg:pl-[90px]">
           <Image
@@ -67,8 +75,13 @@ export default function LandingPage() {
             height="1000"
             alt="lvmfmv"
           />
-          <hgroup className="relative">
-            <h3 className="xl:text-[70px] md:text-[45px] text-[40px] pt-[166px] font-bold">
+          <motion.hgroup
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="relative"
+          >
+            <h3 className="xl:text-[70px] md:text-[45px] text-[40px] pt-[106px] font-bold">
               getlinked Tech Hackathon{" "}
               <span className="text-[#d434fe]">1.0</span>
             </h3>
@@ -95,23 +108,32 @@ export default function LandingPage() {
                 </p>
               )}
             </div>
-          </hgroup>
+          </motion.hgroup>
         </div>
-        <div className="pt-[154px]">
-          <Image
-            className="absolute mt-5 right-0"
-            src="/purpleflare.png"
-            width="500"
-            height="500"
-            alt="lvmfmv"
-          />
-          <Image
-            className=""
-            src="/hero.png"
-            width="1000"
-            height="1000"
-            alt="hero"
-          />
+        <div className="pt-[100px]">
+          <div>
+            <Image
+              className="absolute mt-5 right-0"
+              src="/purpleflare.png"
+              width="500"
+              height="500"
+              alt="lvmfmv"
+            />
+          </div>
+
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: "1", delay: 0.3 }}
+          >
+            <Image
+              className=""
+              src="/hero.png"
+              width="1000"
+              height="1000"
+              alt="hero"
+            />
+          </motion.div>
         </div>
       </div>
       <div className="lg:px-[90px] px-[20px]">
@@ -162,20 +184,30 @@ want to ask about getlinked Hackathon 1.0"
         />
       </div>
       <div className="pb-[20px]">
-        <h3 className="md:mt-[50px] text-center lg:text-[32px] text-[25px] mb-[20px] font-bold">
+        <motion.h3
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="md:mt-[50px] text-center lg:text-[32px] text-[25px] mb-[20px] font-bold"
+        >
           Timeline
-        </h3>
-        <p className="text-center lg:w-[30%] w-full mx-auto">
+        </motion.h3>
+        <motion.p
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="text-center lg:w-[30%] w-full mx-auto"
+        >
           {`Here is the breakdown of the time we anticipate using for the upcoming
           event.`}
-        </p>
+        </motion.p>
         <div className="absolute left-0">
           <Image src="/purpleflare4.png" width="800" height="800" alt="iduf" />
         </div>
         <div className="w-full">
           <Timeline2
             title="Hackathon Announcement"
-              description={`The getlinked tech hackathon 1.0 is formally announced
+            description={`The getlinked tech hackathon 1.0 is formally announced
   to the general public and teams begin to get ready to register`}
             date="November 18, 2023"
             item="1"

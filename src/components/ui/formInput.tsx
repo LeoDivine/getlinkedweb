@@ -6,10 +6,6 @@ interface FORMINUTI {
   placeholder?: string;
   type?: string;
   className?: string;
-  option1?: string;
-  option2?: string;
-  option3?: string;
-  option4?: string;
 }
 
 export function FormInput({
@@ -45,15 +41,26 @@ export function FormTextField({
   );
 }
 
+interface FORMSELECTI{
+    className?: string;
+    formTitle: string;
+  placeholder?: string;
+    option1: string;
+    option2: string;
+    option3: string;
+    option4: string;
+}
+
 export function FormSelect({
   formTitle,
   placeholder,
-  className,
   option1,
   option2,
   option3,
   option4,
-}: FORMINUTI) {
+  className,
+
+}: FORMSELECTI) {
   return (
     <div className="mt-[10px] relative">
       <p className="text-[13px]">{formTitle}</p>
@@ -62,18 +69,10 @@ export function FormSelect({
         id=""
         value={placeholder}
       >
-        <option className="text-black" value="rgri">
-          {option1}
-        </option>
-        <option className="text-black" value="rgri">
-          {option2}
-        </option>
-        <option className="text-black" value="rgri">
-          {option3}
-        </option>
-        <option className="text-black" value="rgri">
-          {option4}
-        </option>
+        <option className="text-black" value="rgri">{option1}</option>
+        <option className="text-black" value="rgri">{option2}</option>
+        <option className="text-black" value="rgri">{option3}</option>
+        <option className="text-black" value="rgri">{option4}</option>
       </select>
     </div>
   );
