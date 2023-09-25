@@ -1,15 +1,14 @@
 "use client";
-import Button from "@/components/ui/button";
 import { FormInput } from "@/components/ui/formInput";
 import FormSelect from "@/components/ui/formselect";
-import { CATEGORIES, GROUPSIZE } from "@/utils/const";
+import { GROUPSIZE } from "@/utils/const";
 import Image from "next/image";
 import { motion } from "framer-motion";
-
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { NextResponse } from "next/server";
 
 export default function Register() {
+  //Categories API consume
   const [categoryOptions, setCategoryOptions] = React.useState<ICategories[]>(
     []
   );
@@ -23,7 +22,7 @@ export default function Register() {
           }
         );
         const result = await response.json();
-        setCategoryOptions(result); // Assuming the categories are in the 'categories' field of the API response
+        setCategoryOptions(result);
         return result;
       } catch (error) {
         console.log(error);
@@ -35,24 +34,69 @@ export default function Register() {
   const groupSizeOptions = GROUPSIZE[0].name.map((group) => {
     return Object.values(group)[0];
   });
-  
+
+  //application API consume
   const [formData, setFormData] = useState({
     email: "",
     phone_number: "",
     team_name: "",
-    group_size: 10,
+    group_size: 1,
     project_topic: "",
     category: 1,
   });
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-     
-    console.log("submitted successfully...");
+    const form = event.currentTarget;
+    if (!form.checkValidity()){
+      console.log("form is not valid")
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "https://backend.getlinked.ai/hackathon/registration",
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            team_name: formData.team_name,
+            phone_number: formData.phone_number,
+            email: formData.email,
+            project_topic: formData.project_topic,
+            category: formData.category,
+            group_size: formData.group_size,
+          }),
+        }
+      );
+
+      const result = await response.json();
+      if (response.ok) {
+        console.log("Form submitted successfully.", result);
+        setFormData({
+          email: "",
+    phone_number: "",
+    team_name: "",
+    group_size: 1,
+    project_topic: "",
+    category: 1,
+        });
+      } else console.log("something went wrong..", NextResponse.json(result));
+    } catch (error) {
+      console.error("An error occurred ");
+    }
+
   };
 
-  console.log(categoryOptions);
   return (
     <div className="bg-[#140D27] lg:flex lg:h-screen text-white">
       <Image
@@ -63,7 +107,7 @@ export default function Register() {
         alt="lgifm"
       />
       <motion.div
-        initial={{opacity: 0 }}
+        initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.3 }}
         className="hidden lg:flex flex-col gap-4 w-full mt-[40px] relative"
@@ -81,42 +125,66 @@ export default function Register() {
           <h3 className="text-[32px] text-[#d434fe] font-bold">Register</h3>
           <h3>Be part of this movement!</h3>
           <h3 className="text-[24px] mt-[10px]">CREATE YOUR ACCOUNT</h3>
-          <form onSubmit={handleSubmit}>
+
+          {/* Form application */}
+          <form onSubmit={handleSubmit} >
             <div className="flex flex-wrap gap-3">
               <FormInput
+                name="team_name"
                 type="text"
+                required
                 placeholder="Teams name"
                 formTitle="Enter Team name"
                 className="md:w-[160px] xl:w-[270px]"
+                onChange={handleInputChange}
+                value={formData.team_name}
               />
               <FormInput
-                type="number"
+                name="phone_number"
+                type="text"
+                required
                 placeholder="Phone Number"
                 formTitle="Enter Phone number"
                 className="md:w-[160px] xl:w-[270px]"
+                onChange={handleInputChange}
+                value={formData.phone_number}
               />
               <FormInput
+                name="email"
                 type="email"
+                required
                 placeholder="Enter email address"
                 formTitle="Email"
                 className="md:w-[160px] xl:w-[270px]"
+                onChange={handleInputChange}
+                value={formData.email}
               />
               <FormInput
+                name="project_topic"
                 type="text"
+                required
                 placeholder="What is the project topic"
                 formTitle="Project Topic"
                 className=" md:w-[160px] xl:w-[270px]"
+                onChange={handleInputChange}
+                value={formData.project_topic}
               />
 
               <FormSelect
+                name="category"
                 className="md:w-[160px] xl:w-[270px]"
                 options={categoryOptions}
                 label="Category"
+                onChange={handleInputChange}
+                value={formData.category}
               />
               <FormSelect
+                name="group_size"
                 className="md:w-[160px] xl:w-[270px]"
                 options={groupSizeOptions}
                 label="Select Group Size"
+                onChange={handleInputChange}
+                value={formData.group_size}
               />
             </div>
 

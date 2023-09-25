@@ -24,13 +24,22 @@ interface IFooterLinksProps {
     option2?: string;
     option3?: string;
     option4?: string;
-    onChange?:(e)=>void;
+    onChange?:React.ChangeEventHandler<HTMLTextAreaElement>;
+  }
+  interface IFormTextarea extends React.DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+    formTitle?: string;
+  }
+
+  interface IFormInput extends React.DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+    formTitle: string
   }
   interface FormSelectProps {
+    name: string;
     className: string;
     options: ICategories[];
-    label: string;
-    
+    label: string; 
+    onChange: (e)=>void;
+    value: number | string;
   }
   interface ICategories {
     id: string;

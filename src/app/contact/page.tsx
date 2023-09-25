@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { FormInput, FormTextField } from "@/components/ui/formInput";
 import {
   facebookIcon,
@@ -8,17 +8,20 @@ import {
 } from "@/utils/icons";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { NextResponse } from "next/server";
 import React from "react";
 
 export default function ContactPage() {
   const [formData, setFormData] = React.useState({
-    fullName: "",
+    first_name: "",
     email: "",
     message: "",
   });
-  const [submitting, setSubmitting] = React.useState(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const router = useRouter();
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -29,53 +32,40 @@ export default function ContactPage() {
   const handleFormSubmission = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (
-      formData.fullName === "" ||
-      formData.email === "" ||
-      formData.message === ""
-    ) {
-      alert("Please fill in all fields.");
+    const form = e.currentTarget;
+    if (!form.checkValidity()){
+      console.log("form is not valid")
       return;
     }
 
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({
-      email: formData.email,
-      first_name: formData.fullName,
-      message: formData.message,
-    });
-
-    const requestOptions: RequestInit = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-    setSubmitting(true);
     try {
       const response = await fetch(
         "https://backend.getlinked.ai/hackathon/contact-form",
-        requestOptions
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            email: formData.email,
+            first_name: formData.first_name,
+            message: formData.message,
+          }),
+        }
       );
 
-      if (!response.ok) {
-        throw new Error("Contact Submission Error");
-      }
-
       const result = await response.json();
-      console.log("Form submitted successfully.", result);
-
-      setFormData({
-        fullName: "",
-        email: "",
-        message: "",
-      });
+      if (response.ok) {
+        console.log("Form submitted successfully", result);
+        setFormData({
+          first_name: "",
+          email: "",
+          message: "",
+        });
+        router.push("/contact");
+      } else
+        console.log("Error...something went wrong", NextResponse.json(result));
     } catch (error) {
-      console.error("An error occurred: ");
-    } finally {
-      setSubmitting(false);
+      console.error("An error occurred");
     }
   };
 
@@ -92,7 +82,7 @@ export default function ContactPage() {
         initial={{ x: -100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.3 }}
-        className="hidden lg:flex flex-col gap-4 w-[50%] md:pl-[100px] pl-[200px] mt-[140px] relative"
+        className="hidden lg:flex flex-col gap-4 w-[50%] md:pl-[100px] pl-[200px] my-auto relative"
       >
         <h3 className="text-[32px] font-bold text-[#d434fe]">Get in touch</h3>
         <p className="w-[20%]">Contact Information</p>
@@ -109,20 +99,26 @@ export default function ContactPage() {
           {linkedInIcon}
         </div>
       </motion.div>
-      <div className="my-auto lg:w-[47%] w-full relative z-20">
+      <motion.div   initial={{ y: -100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, delay: 0.3 }} className="my-auto lg:w-[47%] w-full relative z-20">
         <div className="bg-[#53535316] px-[10px] py-[20px] lg:px-[100px] xl:py-[50px]">
           <h3 className="text-[#d434fe] font-bold">
             Questions or need assistance?
           </h3>
           <h3 className="text-[#d434fe] font-bold">Let us know about it!</h3>
+
+          {/* Contact Form application */}
+        
           <form onSubmit={handleFormSubmission}>
             <FormInput
               type="text"
               placeholder="Enter name"
               formTitle="Name"
               className="w-full md:w-full xl:w-[440px]"
-              name="fullName"
-              value={formData.fullName}
+              name="first_name"
+              required
+              value={formData.first_name}
               onChange={handleInputChange}
             />
             <FormInput
@@ -131,6 +127,7 @@ export default function ContactPage() {
               formTitle="Email"
               className="w-full md:w-full xl:w-[440px]"
               name="email"
+              required
               value={formData.email}
               onChange={handleInputChange}
             />
@@ -140,18 +137,19 @@ export default function ContactPage() {
               formTitle="Message"
               className="p-3 h-[200px] w-full md:w-full xl:w-[440px]"
               name="message"
+              required
               value={formData.message}
               onChange={handleInputChange}
             />
             <button
+              className="lg:mx-[40px] w-[74%] mt-[15px] cursor-pointer bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
               type="submit"
-              className="xl:mx-[150px] w-full xl:w-[30%] mt-[10px] bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
             >
-              {submitting ? "Submitting..." : "Submit"}
+              Submit
             </button>
           </form>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
