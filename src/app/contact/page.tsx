@@ -8,6 +8,7 @@ import {
 } from "@/utils/icons";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { NextResponse } from "next/server";
 import React from "react";
 
@@ -17,7 +18,7 @@ export default function ContactPage() {
     email: "",
     message: "",
   });
-
+  const router = useRouter();
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -48,6 +49,12 @@ export default function ContactPage() {
       const result = await response.json();
       if (response.ok) {
         console.log("Form submitted successfully", result);
+        setFormData({
+          first_name: "",
+          email: "",
+          message: "",
+        });
+        router.push('/contact')
       } else
         console.log("Error...something went wrong", NextResponse.json(result));
     } catch (error) {
