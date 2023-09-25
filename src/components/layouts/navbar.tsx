@@ -24,7 +24,7 @@ export default function Navbar() {
     <>
       <div className="w-full relative z-20 flex flex-row items-center p-5 sm:flex-row justify-between text-white bg-[#140D27]">
         <div className="font-bold text-3xl text-center sm:text-left">
-          get<span className="text-[#D434FE]">linked</span>
+         <Link href="/">get<span className="text-[#D434FE]">linked</span></Link>
         </div>
         <div className="hidden md:flex">
           <ul className="flex flex-col md:flex-row my-auto gap-5">
@@ -35,6 +35,7 @@ export default function Navbar() {
               smooth={true}
               offset={-100}
               duration={800}
+              href='/'
             >
               Timeline
             </ScrollLink>
@@ -46,6 +47,7 @@ export default function Navbar() {
               smooth={true}
               offset={-100}
               duration={800}
+              href='/'
             >
               Overview
             </ScrollLink>
@@ -57,6 +59,7 @@ export default function Navbar() {
               smooth={true}
               offset={-100}
               duration={800}
+              href='/'
             >
               FAQs
             </ScrollLink>
@@ -100,14 +103,41 @@ export default function Navbar() {
         } transition-opacity ease-in-out duration-300 sm:items-center sm:flex md:hidden p-5 bg-[#140D27] lg:hidden relative z-20`}
       >
         <ul className="flex flex-col sm:flex-row gap-5 text-white  ">
+        <li>
+            <ScrollLink
+              to="timeline-section"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={800}
+              href='/'
+            >
+              Timeline
+            </ScrollLink>
+            </li>
           <li>
-            <Link href="/timeline">Timeline</Link>
+          <ScrollLink
+              to="overview-section"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={800}
+              href='/'
+            >
+              Overview
+            </ScrollLink>
           </li>
           <li>
-            <Link href="/overview">Overview</Link>
-          </li>
-          <li>
-            <Link href="/faqs">FAQs</Link>
+          <ScrollLink
+              to="faqs-section"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={800}
+              href='/'
+            >
+              FAQs
+            </ScrollLink>
           </li>
           <li>
             <Link href="/contact">Contact</Link>
