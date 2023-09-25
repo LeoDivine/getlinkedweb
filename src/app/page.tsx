@@ -51,7 +51,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="bg-[#140D27] text-white">
+    <div className="bg-[#140D27] w-full text-white">
       <motion.div
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

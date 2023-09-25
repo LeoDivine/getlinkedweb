@@ -76,7 +76,7 @@ export default function Privacy() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.3 }}
-        className=" my-auto w-[2400px]"
+        className=" my-auto lg:w-[2400px]"
       >
         <Image
           className="my-auto md:hidden xl:block"
