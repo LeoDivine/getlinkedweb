@@ -49,12 +49,6 @@ export const SOCIALLINKS: {
     ],
   },
 ];
-export const CATEGORIES = [
-  { id: 1, name: "MOBILE" },
-  { id: 2, name: "WEB" },
-  { id: 3, name: "UI/UX",},
-];
-
 export const GROUPSIZE = [
   {
     formTitle: "Group Size",

@@ -26,11 +26,17 @@ interface IFooterLinksProps {
     option4?: string;
     onChange?:(e)=>void;
   }
+
+  interface IFormInput extends React.DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+    formTitle: string
+  }
   interface FormSelectProps {
+    name: string;
     className: string;
     options: ICategories[];
     label: string;
-    
+    onChange: (e)=>void;
+    value: number | string;
   }
   interface ICategories {
     id: string;
