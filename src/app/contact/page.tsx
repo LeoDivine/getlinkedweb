@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { FormInput, FormTextField } from "@/components/ui/formInput";
 import {
   facebookIcon,
@@ -8,17 +8,19 @@ import {
 } from "@/utils/icons";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { NextResponse } from "next/server";
 import React from "react";
 
 export default function ContactPage() {
   const [formData, setFormData] = React.useState({
-    fullName: "",
+    first_name: "",
     email: "",
     message: "",
   });
-  const [submitting, setSubmitting] = React.useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -29,54 +31,29 @@ export default function ContactPage() {
   const handleFormSubmission = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (
-      formData.fullName === "" ||
-      formData.email === "" ||
-      formData.message === ""
-    ) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-      email: formData.email,
-      first_name: formData.fullName,
-      message: formData.message,
-    });
-
-    const requestOptions: RequestInit = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-    setSubmitting(true);
     try {
       const response = await fetch(
         "https://backend.getlinked.ai/hackathon/contact-form",
-        requestOptions
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            email: formData.email,
+            first_name: formData.first_name,
+            message: formData.message,
+          }),
+        }
       );
 
-      if (!response.ok) {
-        throw new Error("Contact Submission Error");
-      }
-
       const result = await response.json();
-      console.log("Form submitted successfully.", result);
-
-      setFormData({
-        fullName: "",
-        email: "",
-        message: "",
-      });
+      if (response.ok) {
+        console.log("Form submitted successfully", result);
+      } else
+        console.log("Error...something went wrong", NextResponse.json(result));
     } catch (error) {
-      console.error("An error occurred: ");
-    } finally {
-      setSubmitting(false);
+      console.error("An error occurred");
     }
+    
   };
 
   return (
@@ -115,14 +92,17 @@ export default function ContactPage() {
             Questions or need assistance?
           </h3>
           <h3 className="text-[#d434fe] font-bold">Let us know about it!</h3>
+
+          {/* Contact Form application */}
+
           <form onSubmit={handleFormSubmission}>
             <FormInput
               type="text"
               placeholder="Enter name"
               formTitle="Name"
               className="w-full md:w-full xl:w-[440px]"
-              name="fullName"
-              value={formData.fullName}
+              name="first_name"
+              value={formData.first_name}
               onChange={handleInputChange}
             />
             <FormInput
@@ -144,10 +124,10 @@ export default function ContactPage() {
               onChange={handleInputChange}
             />
             <button
+              className="lg:mx-[40px] w-[74%] mt-[15px] cursor-pointer bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
               type="submit"
-              className="xl:mx-[150px] w-full xl:w-[30%] mt-[10px] bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
             >
-              {submitting ? "Submitting..." : "Submit"}
+              Submit
             </button>
           </form>
         </div>

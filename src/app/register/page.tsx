@@ -1,12 +1,14 @@
 "use client";
 import { FormInput } from "@/components/ui/formInput";
 import FormSelect from "@/components/ui/formselect";
-import {GROUPSIZE } from "@/utils/const";
+import { GROUPSIZE } from "@/utils/const";
 import Image from "next/image";
-import { motion } from "framer-motion";import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
 import { NextResponse } from "next/server";
 
 export default function Register() {
+  //Categories API consume
   const [categoryOptions, setCategoryOptions] = React.useState<ICategories[]>(
     []
   );
@@ -20,7 +22,7 @@ export default function Register() {
           }
         );
         const result = await response.json();
-        setCategoryOptions(result); // Assuming the categories are in the 'categories' field of the API response
+        setCategoryOptions(result);
         return result;
       } catch (error) {
         console.log(error);
@@ -33,6 +35,7 @@ export default function Register() {
     return Object.values(group)[0];
   });
 
+  //application API consume
   const [formData, setFormData] = useState({
     email: "",
     phone_number: "",
@@ -71,16 +74,12 @@ export default function Register() {
       );
 
       const result = await response.json();
-     if (response.ok){
-      console.log("Form submitted successfully.", result);
-     }
-     else console.log("something went wrong..", NextResponse.json(result))
-  
+      if (response.ok) {
+        console.log("Form submitted successfully.", result);
+      } else console.log("something went wrong..", NextResponse.json(result));
     } catch (error) {
-      console.error("An error occurred: ");
+      console.error("An error occurred ");
     }
-
-   
   };
 
   console.log(categoryOptions);
@@ -112,10 +111,12 @@ export default function Register() {
           <h3 className="text-[32px] text-[#d434fe] font-bold">Register</h3>
           <h3>Be part of this movement!</h3>
           <h3 className="text-[24px] mt-[10px]">CREATE YOUR ACCOUNT</h3>
+
+          {/* Form application */}
           <form onSubmit={handleSubmit}>
             <div className="flex flex-wrap gap-3">
               <FormInput
-              name="team_name"
+                name="team_name"
                 type="text"
                 placeholder="Teams name"
                 formTitle="Enter Team name"
@@ -124,7 +125,7 @@ export default function Register() {
                 value={formData.team_name}
               />
               <FormInput
-               name="phone_number"
+                name="phone_number"
                 type="number"
                 placeholder="Phone Number"
                 formTitle="Enter Phone number"
@@ -133,7 +134,7 @@ export default function Register() {
                 value={formData.phone_number}
               />
               <FormInput
-              name="email"
+                name="email"
                 type="email"
                 placeholder="Enter email address"
                 formTitle="Email"

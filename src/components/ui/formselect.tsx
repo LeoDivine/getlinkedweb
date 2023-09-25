@@ -1,4 +1,3 @@
-import { CATEGORIES } from '@/utils/const';
 import React from 'react';
 
 export default function FormSelect({ className, options, label, onChange, name }: FormSelectProps) {

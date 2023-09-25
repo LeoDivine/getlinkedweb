@@ -1,6 +1,4 @@
-'use client'
-
-import { InputHTMLAttributes } from "react";
+import React from 'react'
 
 export function FormInput({
   formTitle,
@@ -28,11 +26,15 @@ export function FormTextField({
   formTitle,
   placeholder,
   className,
-}: FORMINUTI) {
+  name,
+  onChange,
+}: IFormTextarea) {
   return (
     <div className="mt-[20px] relative">
       <p className="text-[13px]">{formTitle}</p>
       <textarea
+      name={name}
+      onChange={onChange}
         className={`focus:outline-none bg-[#53535316] resize-none mt-0 rounded-[5px] outline-white border-[1px] ${className}`}
         placeholder={placeholder}
       ></textarea>
