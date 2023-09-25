@@ -37,8 +37,7 @@ interface IFooterLinksProps {
     name: string;
     className: string;
     options: ICategories[];
-    label: string;
-    
+    label: string; 
     onChange: (e)=>void;
     value: number | string;
   }

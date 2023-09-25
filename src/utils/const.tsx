@@ -18,7 +18,7 @@ export const FOOTERLINKS: {
       { name: "Overview", link: "/" },
       { name: "Timeline", link: "/" },
       { name: "FAQs", link: "/" },
-      { name: "Register", link: "/" },
+      { name: "Register", link: "/register" },
     ],
   },
 

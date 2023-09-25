@@ -56,6 +56,12 @@ export default function Register() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    const form = event.currentTarget;
+    if (!form.checkValidity()){
+      console.log("form is not valid")
+      return;
+    }
+
     try {
       const response = await fetch(
         "https://backend.getlinked.ai/hackathon/registration",
@@ -76,13 +82,21 @@ export default function Register() {
       const result = await response.json();
       if (response.ok) {
         console.log("Form submitted successfully.", result);
+        setFormData({
+          email: "",
+    phone_number: "",
+    team_name: "",
+    group_size: 1,
+    project_topic: "",
+    category: 1,
+        });
       } else console.log("something went wrong..", NextResponse.json(result));
     } catch (error) {
       console.error("An error occurred ");
     }
+
   };
 
-  console.log(categoryOptions);
   return (
     <div className="bg-[#140D27] lg:flex lg:h-screen text-white">
       <Image
@@ -113,11 +127,12 @@ export default function Register() {
           <h3 className="text-[24px] mt-[10px]">CREATE YOUR ACCOUNT</h3>
 
           {/* Form application */}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} >
             <div className="flex flex-wrap gap-3">
               <FormInput
                 name="team_name"
                 type="text"
+                required
                 placeholder="Teams name"
                 formTitle="Enter Team name"
                 className="md:w-[160px] xl:w-[270px]"
@@ -126,7 +141,8 @@ export default function Register() {
               />
               <FormInput
                 name="phone_number"
-                type="number"
+                type="text"
+                required
                 placeholder="Phone Number"
                 formTitle="Enter Phone number"
                 className="md:w-[160px] xl:w-[270px]"
@@ -136,6 +152,7 @@ export default function Register() {
               <FormInput
                 name="email"
                 type="email"
+                required
                 placeholder="Enter email address"
                 formTitle="Email"
                 className="md:w-[160px] xl:w-[270px]"
@@ -145,6 +162,7 @@ export default function Register() {
               <FormInput
                 name="project_topic"
                 type="text"
+                required
                 placeholder="What is the project topic"
                 formTitle="Project Topic"
                 className=" md:w-[160px] xl:w-[270px]"
