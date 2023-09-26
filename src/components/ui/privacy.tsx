@@ -6,7 +6,7 @@ import React from "react";
 
 export default function Privacy() {
   return (
-    <div className="flex flex-col lg:flex-row px-[20px] lg:px-[100px] pb-[30px] mt-[70px]">
+    <div className="flex flex-col w-full lg:flex-row px-[20px] lg:px-[100px] pb-[30px] mt-[70px]">
       <div className="mt-[40px] flex flex-col">
         <motion.h3
           initial={{ x: 100, opacity: 0 }}

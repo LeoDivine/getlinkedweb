@@ -51,7 +51,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="bg-[#140D27] w-full text-white">
+    <div className="bg-[#140D27] overflow-hidden text-white">
       <motion.div
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -66,7 +66,7 @@ export default function LandingPage() {
         />
       </motion.div>
 
-      <div className="flex flex-col lg:flex-row z-10 relative gap-[10px]">
+      <div className="flex flex-col w-full lg:flex-row z-10 relative gap-[10px]">
         <div className="px-[20px] lg:text-left text-center lg:pl-[90px]">
           <Image
             className="absolute right-0 top-0"
@@ -129,8 +129,8 @@ export default function LandingPage() {
             <Image
               className=""
               src="/hero.png"
-              width="1000"
-              height="1000"
+              width="700"
+              height="700"
               alt="hero"
             />
           </motion.div>
