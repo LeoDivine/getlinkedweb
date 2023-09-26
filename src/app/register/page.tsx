@@ -110,32 +110,32 @@ export default function Register() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.3 }}
-        className="hidden lg:flex flex-col gap-4 w-full mt-[40px] relative"
+        className="md:hidden hidden xl:flex flex-col gap-4 w-full mt-[40px] relative"
       >
         <Image
-          className=""
+          className="my-auto"
           src="/register.png"
           width="600"
           height="600"
           alt="kgrgri"
         />
       </motion.div>
-      <div className="relative z-20">
-        <div className="bg-[#53535316] lg:px-[90px] p-[50px] lg:py-[50px] lg:mr-[50px]">
+      <div className="relative z-20 lg:my-auto">
+        <div className="bg-[#53535316] md:mx-[140px] lg:px-[90px] p-[50px] xl:py-[50px] lg:mr-[50px]">
           <h3 className="text-[32px] text-[#d434fe] font-bold">Register</h3>
           <h3>Be part of this movement!</h3>
           <h3 className="text-[24px] mt-[10px]">CREATE YOUR ACCOUNT</h3>
 
           {/* Form application */}
-          <form onSubmit={handleSubmit} >
-            <div className="flex flex-wrap gap-3">
+          <form onSubmit={handleSubmit}>
+            <div className="flex md:flex-row flex-col gap-3">
               <FormInput
                 name="team_name"
                 type="text"
                 required
                 placeholder="Teams name"
                 formTitle="Enter Team name"
-                className="md:w-[160px] xl:w-[270px]"
+                className="md:w-[160px] lg:w-[270px]"
                 onChange={handleInputChange}
                 value={formData.team_name}
               />
@@ -145,17 +145,19 @@ export default function Register() {
                 required
                 placeholder="Phone Number"
                 formTitle="Enter Phone number"
-                className="md:w-[160px] xl:w-[270px]"
+                className="md:w-[160px] lg:w-[270px]"
                 onChange={handleInputChange}
                 value={formData.phone_number}
               />
+            </div>
+            <div className="flex md:flex-row flex-col gap-3">
               <FormInput
                 name="email"
                 type="email"
                 required
                 placeholder="Enter email address"
                 formTitle="Email"
-                className="md:w-[160px] xl:w-[270px]"
+                className="md:w-[160px] lg:w-[270px]"
                 onChange={handleInputChange}
                 value={formData.email}
               />
@@ -165,14 +167,15 @@ export default function Register() {
                 required
                 placeholder="What is the project topic"
                 formTitle="Project Topic"
-                className=" md:w-[160px] xl:w-[270px]"
+                className=" md:w-[160px] lg:w-[270px]"
                 onChange={handleInputChange}
                 value={formData.project_topic}
               />
-
+            </div>
+            <div className="flex md:flex-row flex-col gap-3">
               <FormSelect
                 name="category"
-                className="md:w-[160px] xl:w-[270px]"
+                className="md:w-[160px] lg:w-[270px]"
                 options={categoryOptions}
                 label="Category"
                 onChange={handleInputChange}
@@ -180,16 +183,15 @@ export default function Register() {
               />
               <FormSelect
                 name="group_size"
-                className="md:w-[160px] xl:w-[270px]"
+                className="md:w-[160px] lg:w-[270px]"
                 options={groupSizeOptions}
                 label="Select Group Size"
                 onChange={handleInputChange}
                 value={formData.group_size}
               />
             </div>
-
             <button
-              className="lg:mx-[40px] w-[74%] mt-[15px] cursor-pointer bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
+              className="lg:mx-[70px] w-[74%] mt-[15px] cursor-pointer bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
               type="submit"
             >
               Submit
