@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { NextResponse } from "next/server";
+import Modal from "@/components/ui/modal";
 
 export default function Register() {
   //Categories API consume
@@ -57,8 +58,8 @@ export default function Register() {
     event.preventDefault();
 
     const form = event.currentTarget;
-    if (!form.checkValidity()){
-      console.log("form is not valid")
+    if (!form.checkValidity()) {
+      console.log("form is not valid");
       return;
     }
 
@@ -84,21 +85,29 @@ export default function Register() {
         console.log("Form submitted successfully.", result);
         setFormData({
           email: "",
-    phone_number: "",
-    team_name: "",
-    group_size: 1,
-    project_topic: "",
-    category: 1,
+          phone_number: "",
+          team_name: "",
+          group_size: 1,
+          project_topic: "",
+          category: 1,
         });
       } else console.log("something went wrong..", NextResponse.json(result));
     } catch (error) {
       console.error("An error occurred ");
     }
+  };
 
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   return (
-    <div className="bg-[#140D27] lg:flex lg:h-screen text-white">
+    <div className="bg-[#140D27] relative lg:flex lg:h-screen text-white">
       <Image
         className="absolute left-0 top-0"
         src="/purpleflare8.png"
@@ -120,8 +129,8 @@ export default function Register() {
           alt="kgrgri"
         />
       </motion.div>
-      <div className="relative z-20 lg:my-auto">
-        <div className="bg-[#53535316] md:mx-[140px] lg:px-[90px] p-[50px] xl:py-[50px] lg:mr-[50px]">
+      <div className="z-20 lg:my-auto">
+        <div className="bg-[#53535316] relative md:mx-[140px] lg:px-[90px] p-[50px] xl:py-[50px] lg:mr-[50px]">
           <h3 className="text-[32px] text-[#d434fe] font-bold">Register</h3>
           <h3>Be part of this movement!</h3>
           <h3 className="text-[24px] mt-[10px]">CREATE YOUR ACCOUNT</h3>
@@ -191,6 +200,7 @@ export default function Register() {
               />
             </div>
             <button
+              onClick={openModal}
               className="lg:mx-[70px] w-[74%] mt-[15px] cursor-pointer bg-gradient-to-r from-[#903AFF] to-[#FE34B9] py-[10px] rounded-sm px-[30px]"
               type="submit"
             >
@@ -199,6 +209,7 @@ export default function Register() {
           </form>
         </div>
       </div>
+      <Modal isOpen={isOpen} onClose={closeModal} />
     </div>
   );
 }
