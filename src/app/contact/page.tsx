@@ -13,6 +13,7 @@ import { NextResponse } from "next/server";
 import React from "react";
 
 export default function ContactPage() {
+  //Contact form API Integration
   const [formData, setFormData] = React.useState({
     first_name: "",
     email: "",

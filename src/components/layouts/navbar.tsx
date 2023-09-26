@@ -13,12 +13,15 @@ export default function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
   const scrollToSection = (sectionId: string) => {
-    const offset = parseInt(sectionId, 10); // Convert string to a base-10 integer
-    scroll.scrollTo(offset, {
-      duration: 800,
-      smooth: 'easeInOutQuart',
-    });
-  };
+    const element = document.getElementById(sectionId);
+
+    if (element) {
+    const offset = element.offsetTop;
+    window.scrollTo({ top: offset - 100, behavior: 'smooth'})
+  } else {
+    window.location.href = `/#${sectionId}`;
+  }
+};
   
   return (
     <>
@@ -35,9 +38,9 @@ export default function Navbar() {
               smooth={true}
               offset={-100}
               duration={800}
-              href='/'
+              onClick={() => scrollToSection('timeline-section')}
             >
-              Timeline
+              <Link href="/#timeline-section">Timeline</Link>
             </ScrollLink>
             </li>
             <li>
@@ -47,9 +50,9 @@ export default function Navbar() {
               smooth={true}
               offset={-100}
               duration={800}
-              href='/'
+              onClick={() => scrollToSection('overview-section')}
             >
-              Overview
+             <Link href="/#overview-section"> Overview</Link>
             </ScrollLink>
             </li>
             <li>
@@ -59,9 +62,9 @@ export default function Navbar() {
               smooth={true}
               offset={-100}
               duration={800}
-              href='/'
+              onClick={() => scrollToSection('faqs-section')}
             >
-              FAQs
+             <Link href="/#faqs-section">FAQs</Link>
             </ScrollLink>
             </li>
             <li>
@@ -102,7 +105,7 @@ export default function Navbar() {
             : "hidden opacity-0"
         } transition-opacity ease-in-out duration-300 sm:items-center sm:flex md:hidden p-5 bg-[#140D27] lg:hidden relative z-20`}
       >
-        <ul className="flex flex-col sm:flex-row gap-5 text-white  ">
+        <ul className="flex flex-col  sm:flex-row gap-5 text-white  ">
         <li>
             <ScrollLink
               to="timeline-section"
@@ -110,9 +113,9 @@ export default function Navbar() {
               smooth={true}
               offset={-100}
               duration={800}
-              href='/'
+              onClick={() => scrollToSection('timeline-section')}
             >
-              Timeline
+               <Link href="/#timeline-section">Timeline</Link>
             </ScrollLink>
             </li>
           <li>
@@ -122,9 +125,9 @@ export default function Navbar() {
               smooth={true}
               offset={-100}
               duration={800}
-              href='/'
+              onClick={() => scrollToSection('overview-section')}
             >
-              Overview
+               <Link href="/#overview-section">Overview</Link>
             </ScrollLink>
           </li>
           <li>
@@ -134,9 +137,9 @@ export default function Navbar() {
               smooth={true}
               offset={-100}
               duration={800}
-              href='/'
+              onClick={() => scrollToSection('faqs-section')}
             >
-              FAQs
+               <Link href="/#faqs-section">FAQs</Link>
             </ScrollLink>
           </li>
           <li>
