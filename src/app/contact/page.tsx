@@ -68,6 +68,7 @@ export default function ContactPage() {
     } catch (error) {
       console.error("An error occurred");
     }
+    form.reset();
   };
 
   return (

@@ -95,6 +95,8 @@ export default function Register() {
     } catch (error) {
       console.error("An error occurred ");
     }
+    
+    form.reset();
   };
 
   const [isOpen, setIsOpen] = useState(false);
